@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "@discordjs/opus": "^0.3.2",
+    "axios": "^0.20.0",
+    "discord.js": "^12.3.1",
+    "dotenv": "^8.2.0",
+    "ffmpeg": "^0.0.4",
+    "fluent-ffmpeg": "^2.1.2",
+    "nodemon": "^2.0.4",
+    "tinycolor2": "^1.4.1",
+    "ytdl-core": "^3.2.2",
+    "ytdl-core-discord": "^1.2.1"
+  },
+  "name": "paperbot",
+  "version": "1.0.0",
+  "description": "The official bot of OnPaper",
+  "main": "main.js",
+  "repository": "git@github.com:theceejay123/paperbot.git",
+  "author": "Janeal Pimentel <ceejaypimentel@hotmail.ca>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "nodemon main.js"
+  }
+}
