@@ -12,7 +12,8 @@ const { readdirSync } = require("fs");
 const { join } = require("path");
 const Client = require("./app/client/_client");
 const { Collection } = require("discord.js");
-const { PREFIX } = require("./config.json");
+const config = require("./config.json");
+const PREFIX = config.prefix;
 
 const client = new Client();
 client.commands = new Collection();
@@ -62,6 +63,51 @@ client.on("message", async (msg) => {
   const [, matchedPrefix] = msg.content.match(prefixRegex);
   const args = msg.content.slice(matchedPrefix.length).trim().split(/ +/);
   const commandName = args.shift().toLowerCase();
+
+  const command =
+    client.commands.get(commandName) ||
+    client.commands.find(
+      (cmd) => cmd.aliases && cmd.aliases.includes(commandName)
+    );
+
+  // There is no command with that name.
+  if (!command) return;
+
+  if (!cooldowns.has(command.name)) {
+    cooldowns.set(command.name, new Collection());
+  }
+
+  const now = Date.now();
+  const timestamps = cooldowns.get(command.name);
+  const cdAmount = timestamps.get(command.cooldown || 1) * 1000;
+
+  if (timestamps.has(msg.author.id)) {
+    const expireTime = timestamps.get(msg.author.id) + cdAmount;
+
+    if (now < expireTime) {
+      const timeLeft = (expireTime - now) / 1000;
+
+      return msg.channel.send(
+        `Please wait ${timeLeft.toFixed(
+          1
+        )} more seconds(s) before reusing the \`${command.name}\` command.`
+      );
+    }
+  }
+
+  timestamps.set(msg.author.id, now);
+  setTimeout(() => timestamps.delete(msg.author.id), cdAmount);
+
+  try {
+    command.execute(msg, args);
+  } catch (error) {
+    console.error(error);
+    msg.channel.send(
+      "There was an error executing the command. Message an **OnPaper** administrator.".catch(
+        console.error
+      )
+    );
+  }
 });
 
 client.login(`${process.env.DISCORD_TOKEN}`);
