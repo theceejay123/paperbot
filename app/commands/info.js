@@ -15,7 +15,7 @@ module.exports = {
       .addField("**Server Name:**", `${guild.name}`)
       .addField("**Server Owner:**", `${guild.owner}`)
       .addField("**Member Count:**", `${guild.memberCount}`)
-      .addField("**Role Count:**", `${guild.roles.size}`)
+      .addField("**Role Count:**", `${guild.roles.size ?? "N/A"}`)
       .setTimestamp()
       .setFooter(
         `${client.user.tag} • Created by OnPaper`,
