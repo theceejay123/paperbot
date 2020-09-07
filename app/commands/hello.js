@@ -1,5 +1,7 @@
-const { MessageEmbed } = require("discord.js");
 require("../utils/general/helper");
+const { MessageEmbed } = require("discord.js");
+const honorifics = require("../utils/general/honorifics");
+const colors = require("../utils/general/colors");
 
 module.exports = {
   name: "hello",
@@ -9,15 +11,14 @@ module.exports = {
   execute(msg) {
     const { author, guild } = msg;
     const message = new MessageEmbed()
+      .setColor(colors.lightBlue.main)
       .setAuthor(
         `${module.exports.aliases[
           Math.floor(Math.random() * module.exports.aliases.length)
-        ].toProperCase()} ${author.username}!`
+        ].toProperCase()} ${author.username}-${honorifics.randomize()}!`
       )
       .setTimestamp()
-      .setFooter(
-        `${guild.name}`
-      );
+      .setFooter(`${guild.name}`);
 
     msg.channel.send(message);
   },
