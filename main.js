@@ -90,7 +90,9 @@ client.on("message", async (msg) => {
       return msg.channel.send(
         `Please wait ${timeLeft.toFixed(
           1
-        )} more seconds(s) before reusing the \`${command.name}\` command.`
+        )} more seconds(s) before reusing the \`${PREFIX}${
+          command.name
+        }\` command.`
       );
     }
   }
