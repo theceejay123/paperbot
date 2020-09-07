@@ -13,6 +13,7 @@ const { join } = require("path");
 const Client = require("./app/client/_client");
 const { Collection } = require("discord.js");
 const config = require("./config.json");
+const { time } = require("console");
 const PREFIX = config.prefix;
 
 const client = new Client();
@@ -79,14 +80,13 @@ client.on("message", async (msg) => {
 
   const now = Date.now();
   const timestamps = cooldowns.get(command.name);
-  const cdAmount = timestamps.get(command.cooldown || 1) * 1000;
+  const cdAmount = (command.cooldown || 1) * 1000;
 
   if (timestamps.has(msg.author.id)) {
     const expireTime = timestamps.get(msg.author.id) + cdAmount;
 
     if (now < expireTime) {
       const timeLeft = (expireTime - now) / 1000;
-
       return msg.channel.send(
         `Please wait ${timeLeft.toFixed(
           1

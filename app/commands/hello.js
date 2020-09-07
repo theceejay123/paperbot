@@ -16,8 +16,7 @@ module.exports = {
       )
       .setTimestamp()
       .setFooter(
-        `${guild.name}`,
-        `${guild.iconURL({ format: "png", dynamic: true })}`
+        `${guild.name}`
       );
 
     msg.channel.send(message);
