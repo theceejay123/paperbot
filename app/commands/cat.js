@@ -8,7 +8,7 @@ module.exports = {
   aliases: ["kitty", "kat", "c", "feline"],
   description: "Cat pictures!",
   execute(msg) {
-    const { author, guild } = msg;
+    const { client, guild } = msg;
     msg.channel
       .send("Generating Picture of Cat...")
       .then((b_msg) => {
@@ -22,8 +22,8 @@ module.exports = {
             .setImage(picture.file)
             .setTimestamp()
             .setFooter(
-              `${msg.client.user.tag} • Created by OnPaper`,
-              msg.client.user.displayAvatarURL()
+              `${client.user.tag} • Created by OnPaper`,
+              client.user.displayAvatarURL()
             );
 
           b_msg.edit(message).catch(console.error);

@@ -21,8 +21,8 @@ module.exports = {
             .setImage(picture.message)
             .setTimestamp()
             .setFooter(
-              `${msg.client.user.tag} • Created by OnPaper`,
-              msg.client.user.displayAvatarURL()
+              `${client.user.tag} • Created by OnPaper`,
+              client.user.displayAvatarURL()
             );
 
           b_msg.edit(message).catch(console.error);
