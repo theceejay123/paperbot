@@ -4,9 +4,12 @@
     "axios": "^0.20.0",
     "discord.js": "^12.3.1",
     "dotenv": "^8.2.0",
-    "ffmpeg": "^0.0.4",
-    "fluent-ffmpeg": "^2.1.2",
+    "ffmpeg-static": "^4.2.7",
+    "lyrics-finder": "^21.3.3",
     "nodemon": "^2.0.4",
+    "simple-youtube-api": "^5.2.1",
+    "soundcloud-downloader": "^0.1.6",
+    "string-progressbar": "^1.0.1",
     "tinycolor2": "^1.4.1",
     "ytdl-core": "^3.2.2",
     "ytdl-core-discord": "^1.2.1"
@@ -18,7 +21,10 @@
   "repository": "git@github.com:theceejay123/paperbot.git",
   "author": "Janeal Pimentel <ceejaypimentel@hotmail.ca>",
   "license": "MIT",
-  "private": false,
+  "private": true,
+  "engines": {
+    "node": ">=12.0.0"
+  },
   "scripts": {
     "start": "nodemon main.js"
   }
