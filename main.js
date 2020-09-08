@@ -13,8 +13,7 @@ const { join } = require("path");
 const Client = require("./app/client/_client");
 const { Collection } = require("discord.js");
 const config = require("./config.json");
-const { time } = require("console");
-const PREFIX = config.prefix;
+const PREFIX = config.PREFIX;
 
 const client = new Client();
 client.commands = new Collection();
