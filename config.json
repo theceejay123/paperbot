@@ -1,3 +1,5 @@
 {
-    "prefix": "!"
+  "PREFIX": "!",
+  "MAX_PLAYLIST_SIZE": 10,
+  "PRUNING": false
 }
